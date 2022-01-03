@@ -49,8 +49,10 @@ public class Main {
                 means.add(split[1]);
             }
         }
-
+    
         exLen = slangs.size();
+        
+        //Open file to load data
         File slangHis = new File("hslangs.txt");
         File defHis = new File("hdefs.txt");
         Scanner scan_Slang = new Scanner(slangHis);

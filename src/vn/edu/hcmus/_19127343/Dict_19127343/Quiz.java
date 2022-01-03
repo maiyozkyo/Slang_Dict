@@ -1,4 +1,4 @@
-package vn.edu.hcmus._19127343.Dict;
+package vn.edu.hcmus._19127343.Dict_19127343;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.util.Random;
  * vn.edu.hcmus._19127343.Dict
  * Created by Bleu
  * Date 1/3/2022 - 1:05 PM
- * Description: Source: (Youtuber) Bro Code
+ * Description: 85% of Quiz code belong to (Youtuber) Bro Code
  */
 
 public class Quiz extends Thread implements ActionListener {
@@ -22,7 +22,7 @@ public class Quiz extends Thread implements ActionListener {
     int questionIndex = 0;
     int correct_guesses = 0;
     int seconds = 15;
-    int total_questions = slangs.size();
+    int total_questions;
     String answer = "";
     char trueAns;
     JFrame frame = new JFrame();
@@ -58,6 +58,9 @@ public class Quiz extends Thread implements ActionListener {
      * @param meansSample
      */
     public Quiz(ArrayList<String> slangSample, ArrayList<String> meansSample) {
+        /**
+         * Create default params
+         */
         slangs = slangSample;
         means = meansSample;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -177,7 +180,7 @@ public class Quiz extends Thread implements ActionListener {
     }
 
     public void nextQuestion() {
-
+        total_questions = slangs.size();
         if (index >= total_questions) {
             frame.dispose();
         } else {
@@ -238,6 +241,9 @@ public class Quiz extends Thread implements ActionListener {
         displayAnswer();
     }
 
+    /**
+     * Display the true answer for Player
+     */
     public void displayAnswer() {
         timer.stop();
         buttonA.setEnabled(false);

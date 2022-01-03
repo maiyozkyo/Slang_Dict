@@ -1,4 +1,4 @@
-package vn.edu.hcmus._19127343.Dict;
+package vn.edu.hcmus._19127343.Dict_19127343;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
+    /**
+     * Main
+     * @param args
+     * @throws FileNotFoundException
+     */
     public static void main(String[] args) throws FileNotFoundException {
 	// write your code here
         createAndShowGUI();
@@ -21,6 +25,10 @@ public class Main {
     private static ArrayList<String> slangsHis = new ArrayList<>();
     private static ArrayList<String> defsHis = new ArrayList<>();
 
+    /**
+     * Run as default to get slang words and meaning of slang word
+     * @throws FileNotFoundException
+     */
     private static void start() throws FileNotFoundException {
         File currentSlang = new File("current_slang.txt");
         Scanner sc = new Scanner(currentSlang);
@@ -53,6 +61,11 @@ public class Main {
         scan_Def.close();
     }
 
+    /**
+     * Add component into the main window
+     * @param fullpane
+     * @throws FileNotFoundException
+     */
     public static void addComp(Container fullpane) throws FileNotFoundException {
         Container pane = new Container();
         pane.setLayout(
@@ -88,11 +101,14 @@ public class Main {
         JLabel lSlang = new JLabel("Input slang word here");
         lSlang.setHorizontalAlignment(JLabel.CENTER);
         for_slang.add(lSlang, BorderLayout.PAGE_START);
-        JButton bSlangQuest = new JButton("Slang Question");
+
+        //Create action for funny Quiz
+        JButton bSlangQuest = new JButton("Slang Quiz");
         bSlangQuest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Quiz quiz = new Quiz(slangs, means);
+                fullpane.setVisible(true);
             }
         });
         bSlangQuest.setPreferredSize(new Dimension(200, 3));
@@ -101,6 +117,8 @@ public class Main {
         tSlang.setHorizontalAlignment(0);
         tSlang.setPreferredSize(new Dimension(400, 3));
         for_slang.add(tSlang, BorderLayout.CENTER);
+
+        //Create Slang History and add action for this button
         JButton bSlangHis = new JButton("Slang History");
         bSlangHis.addActionListener(new ActionListener() {
             @Override
@@ -123,7 +141,9 @@ public class Main {
         JLabel lDef = new JLabel("Input definition here");
         lDef.setHorizontalAlignment(JLabel.CENTER);
         for_def.add(lDef, BorderLayout.PAGE_START);
-        JButton bDefQuest = new JButton("Definition Question");
+
+        //Add action for Definition Quiz
+        JButton bDefQuest = new JButton("Definition Quiz");
         bDefQuest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +156,8 @@ public class Main {
         tDef.setHorizontalAlignment(0);
         tDef.setPreferredSize(new Dimension(400, 3));
         for_def.add(tDef, BorderLayout.CENTER);
+
+        //Create and add action for Definition History
         JButton bDefHis = new JButton("Definition History");
         bDefHis.addActionListener(new ActionListener() {
             @Override
@@ -158,6 +180,8 @@ public class Main {
         tRes.setEditable(false);
         tRes.setAlignmentX(0);
         for_search.add(tRes);
+
+        //Create and add action for Search button
         JButton bSearch = new JButton("Search");
         bSearch.addActionListener(new ActionListener() {
             @Override
@@ -197,6 +221,7 @@ public class Main {
         for_search.add(bSearch);
 
         //Add component to button panel
+        //Create and add action for add button
         JButton bAdd = new JButton("Add new slang word");
         bAdd.addActionListener(new ActionListener() {
             @Override
@@ -236,16 +261,20 @@ public class Main {
 
                 Container btnPanel = new Container();
                 btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+                //Action for OK button
                 JButton addOk = new JButton("OK");
                 addOk.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (!tNewSlangWord.getText().equals("") && !tNewSlangWord.getText().equals(" ")){
+                            //none exist slang word
                             if (slangs.indexOf(tNewSlangWord.getText()) < 0) {
                                 slangs.add(tNewSlangWord.getText());
                                 means.add(tNewDefWord.getText().replace(",", " |"));
                                 addWindow.dispose();
                             }
+                            //existed slang word
                             else {
                                 JFrame notify = new JFrame("Warning");
                                 notify.getContentPane().setLayout(
@@ -255,7 +284,10 @@ public class Main {
                                 warning.setHorizontalAlignment(JLabel.CENTER);
                                 notify.getContentPane().add(warning);
 
+                                //Button panel
                                 JPanel btn = new JPanel();
+
+                                //Overwrite button
                                 btn.setLayout(new FlowLayout(FlowLayout.CENTER));
                                 JButton OverWrite = new JButton("Overwrite");
                                 OverWrite.addActionListener(new ActionListener() {
@@ -267,6 +299,8 @@ public class Main {
                                         addWindow.dispose();
                                     }
                                 });
+
+                                //Duplicate button
                                 JButton Dup = new JButton("Duplicate");
                                 Dup.addActionListener(new ActionListener() {
                                     @Override
@@ -278,6 +312,8 @@ public class Main {
                                         addWindow.dispose();
                                     }
                                 });
+
+                                //Cancel button
                                 JButton Cancel = new JButton("Cancel");
                                 Cancel.addActionListener(new ActionListener() {
                                     @Override
@@ -299,6 +335,8 @@ public class Main {
                     }
                 });
                 btnPanel.add(addOk);
+
+                //Cancel for Add action
                 JButton addCan = new JButton("Cancel");
                 addCan.addActionListener(new ActionListener() {
                     @Override
@@ -315,6 +353,8 @@ public class Main {
             }
         });
         for_btn.add(bAdd);
+
+        //Button to get 1 random slang word in data
         JButton bRandom = new JButton("Random Slang word");
         bRandom.addActionListener(new ActionListener() {
             @Override
@@ -327,6 +367,7 @@ public class Main {
         });
         for_btn.add(bRandom);
 
+        //Button to edit slang word and action for this
         JButton bEdit = new JButton("Edit");
         bEdit.addActionListener(new ActionListener() {
             @Override
@@ -353,7 +394,9 @@ public class Main {
 
                 Container btnPane = new Container();
                 btnPane.setLayout(new FlowLayout(1));
-                JButton eOk = new JButton("OK");
+
+                //Confirm Edit
+                JButton eOk = new JButton("Confirm");
                 eOk.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -364,6 +407,8 @@ public class Main {
                         }
                     }
                 });
+
+                //Cancel Edit
                 JButton eCan = new JButton("Cancel");
                 eCan.addActionListener(new ActionListener() {
                     @Override
@@ -382,6 +427,8 @@ public class Main {
             }
         });
         for_btn.add(bEdit);
+
+        //Delete button: delete present slang word
         JButton bDel = new JButton("Delete");
         bDel.addActionListener(new ActionListener() {
             @Override
@@ -401,6 +448,7 @@ public class Main {
         });
         for_btn.add(bDel);
 
+        //Reset button: reset to original data
         JButton reset = new JButton("Reset");
         reset.addActionListener(new ActionListener() {
             @Override
@@ -440,6 +488,11 @@ public class Main {
         fullpane.add(pane);
         fullpane.add(history);
     }
+
+    /**
+     * Create and show gui for user
+     * @throws FileNotFoundException
+     */
     private static void createAndShowGUI() throws FileNotFoundException {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame window = new JFrame("Slang - Definition Dictionary");

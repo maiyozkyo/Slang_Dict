@@ -92,76 +92,7 @@ public class Main {
         bSlangQuest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame sQuestionWindow = new JFrame("Funny Slang Question");
-                sQuestionWindow.getContentPane().setLayout(new BoxLayout(sQuestionWindow.getContentPane(), 1));
-                sQuestionWindow.setSize(500, 500);
-                sQuestionWindow.setVisible(true);
-
-                final int[] Score = {0};
-                Container pQuestion = new Container();
-                pQuestion.setSize(new Dimension(250,10));
-                pQuestion.setLayout(new BoxLayout(pQuestion, 0));
-                JTextField tQuestion = new JTextField(30);
-                tQuestion.setHorizontalAlignment(0);
-                tQuestion.setEditable(false);
-                pQuestion.add(tQuestion);
-                JTextField tScore = new JTextField(3);
-                tScore.setEditable(false);
-                Random r = new Random();
-                pQuestion.add(tScore);
-                JTextField tTimer = new JTextField(3);
-                tTimer.setEditable(false);
-                tTimer.setHorizontalAlignment(0);
-                JPanel null_Layout = new JPanel();
-                null_Layout.setLayout(new FlowLayout());
-                null_Layout.setPreferredSize(new Dimension(350, 350));
-
-                Container pBtn = new Container();
-                pBtn.setLayout(new GridLayout(2,2));
-                JButton[] btns = new JButton[4];
-                btns[0] = new JButton();
-                btns[1] = new JButton();
-                btns[2] = new JButton();
-                btns[3] = new JButton();
-
-                pBtn.add(btns[0]);
-                pBtn.add(btns[1]);
-                pBtn.add(btns[2]);
-                pBtn.add(btns[3]);
-                sQuestionWindow.getContentPane().add(pQuestion);
-                sQuestionWindow.getContentPane().add(null_Layout);
-                sQuestionWindow.getContentPane().add(pBtn);
-
-                while(true){
-                    int index_question = r.nextInt((slangs.size()-1 - 0) + 1 ) + 0;
-                    tQuestion.setText("What is/are the meaning of " + slangs.get(index_question));
-                    tScore.setHorizontalAlignment(0);
-                    tScore.setText(String.valueOf(Score[0]));
-                    int time = 20;
-                    tTimer.setText(String.valueOf(time) + " s");
-                    pQuestion.add(tTimer);
-
-                    int correct = r.nextInt((3 - 0) + 1 ) + 0;
-                    btns[correct].setText(means.get(index_question).replace(",", " |"));
-                    int random = 0;
-                    for (int i = 0; i < 3; i++){
-                        int finalI = i;
-                        btns[i].addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                if (finalI == correct)
-                                    Score[0]++;
-
-                            }
-                        });
-                        if (i != correct){
-                            while (random == index_question){
-                                random = r.nextInt((slangs.size()-1 - 0) + 1 ) + 0;
-                            }
-                            btns[i].setText(means.get(random).replace(",", " |"));
-                        }
-                    }
-                }
+                Quiz quiz = new Quiz(slangs, means);
             }
         });
         bSlangQuest.setPreferredSize(new Dimension(200, 3));
@@ -193,6 +124,12 @@ public class Main {
         lDef.setHorizontalAlignment(JLabel.CENTER);
         for_def.add(lDef, BorderLayout.PAGE_START);
         JButton bDefQuest = new JButton("Definition Question");
+        bDefQuest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Quiz quiz = new Quiz(means, slangs);
+            }
+        });
         bDefQuest.setPreferredSize(new Dimension(200, 3));
         for_def.add(bDefQuest, BorderLayout.LINE_START);
         JTextField tDef = new JTextField(30);

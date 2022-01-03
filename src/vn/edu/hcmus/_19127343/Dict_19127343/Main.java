@@ -10,6 +10,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    //Previous lenght
+    private static int exLen;
+    
+    //Lists of Slang Word And Meanings
+    private static ArrayList<String> slangs = new ArrayList<>();
+    private static ArrayList<String> means = new ArrayList<>();
+
+    //List of search history
+    private static ArrayList<String> slangsHis = new ArrayList<>();
+    private static ArrayList<String> defsHis = new ArrayList<>();
+
     /**
      * Main
      * @param args
@@ -18,11 +30,6 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         createAndShowGUI();
     }
-    private static int exLen;
-    private static ArrayList<String> slangs = new ArrayList<>();
-    private static ArrayList<String> means = new ArrayList<>();
-    private static ArrayList<String> slangsHis = new ArrayList<>();
-    private static ArrayList<String> defsHis = new ArrayList<>();
 
     /**
      * Run as default to get slang words and meaning of slang word
@@ -42,6 +49,7 @@ public class Main {
                 means.add(split[1]);
             }
         }
+
         exLen = slangs.size();
         File slangHis = new File("hslangs.txt");
         File defHis = new File("hdefs.txt");

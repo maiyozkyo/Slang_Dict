@@ -16,7 +16,6 @@ public class Main {
      * @throws FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {
-	// write your code here
         createAndShowGUI();
     }
     private static int exLen;

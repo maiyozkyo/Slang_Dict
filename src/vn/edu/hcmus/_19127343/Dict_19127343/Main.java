@@ -190,7 +190,7 @@ public class Main {
         tRes.setAlignmentX(0);
         for_search.add(tRes);
 
-        //Create and add action for Search button
+        //Create and add action event for Search button
         JButton bSearch = new JButton("Search");
         bSearch.addActionListener(new ActionListener() {
             @Override
@@ -230,7 +230,7 @@ public class Main {
         for_search.add(bSearch);
 
         //Add component to button panel
-        //Create and add action for add button
+        //Create and add action event for add button
         JButton bAdd = new JButton("Add new slang word");
         bAdd.addActionListener(new ActionListener() {
             @Override

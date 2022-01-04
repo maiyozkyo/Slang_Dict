@@ -81,7 +81,7 @@ public class Main {
                 new BoxLayout(pane, 1)
         );
         start();
-        //define
+        //define panel for window
         JPanel for_slang = new JPanel();
         JPanel for_def = new JPanel();
         JPanel null_pan1 = new JPanel();
@@ -127,7 +127,7 @@ public class Main {
         tSlang.setPreferredSize(new Dimension(400, 3));
         for_slang.add(tSlang, BorderLayout.CENTER);
 
-        //Create Slang History and add action for this button
+        //Create Slang History and add action for Watch Search Slang Word button
         JButton bSlangHis = new JButton("Slang History");
         bSlangHis.addActionListener(new ActionListener() {
             @Override

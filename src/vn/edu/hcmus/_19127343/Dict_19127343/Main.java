@@ -417,7 +417,7 @@ public class Main {
                     }
                 });
 
-                //Cancel Edit
+                //Cancel Edit and return to main window
                 JButton eCan = new JButton("Cancel");
                 eCan.addActionListener(new ActionListener() {
                     @Override

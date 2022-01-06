@@ -19,14 +19,13 @@ public class Quiz extends Thread implements ActionListener {
     private static ArrayList<String> slangs = new ArrayList<>();
     private static ArrayList<String> means = new ArrayList<>();
     int index;
-    int questionIndex = 0;
     int correct_guesses = 0;
     int seconds = 15;
-    int total_questions;
+    int total_questions = 21;
     String answer = "";
     char trueAns;
-    JFrame frame = new JFrame();
-    JTextField textfield = new JTextField();
+    JDialog frame;
+    JTextField scoreLabel = new JTextField();
     JTextArea textarea = new JTextArea();
     JButton buttonA = new JButton();
     JButton buttonB = new JButton();
@@ -36,10 +35,8 @@ public class Quiz extends Thread implements ActionListener {
     JLabel answer_labelB = new JLabel();
     JLabel answer_labelC = new JLabel();
     JLabel answer_labelD = new JLabel();
-    JLabel time_label = new JLabel();
     JLabel seconds_left = new JLabel();
     JTextField number_right = new JTextField();
-    JTextField percentage = new JTextField();
     Timer timer = new Timer(1000, new ActionListener() {
 
         @Override
@@ -61,21 +58,22 @@ public class Quiz extends Thread implements ActionListener {
         /**
          * Create default params
          */
+        frame = new JDialog();
         slangs = slangSample;
         means = meansSample;
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(650, 650);
         frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLayout(null);
         frame.setResizable(false);
 
-        textfield.setBounds(0, 0, 650, 50);
-        textfield.setBackground(new Color(25, 25, 25));
-        textfield.setForeground(new Color(25, 255, 0));
-        textfield.setFont(new Font("Ink Free", Font.BOLD, 30));
-        textfield.setBorder(BorderFactory.createBevelBorder(1));
-        textfield.setHorizontalAlignment(JTextField.CENTER);
-        textfield.setEditable(false);
+        scoreLabel.setBounds(0, 0, 650, 50);
+        scoreLabel.setBackground(new Color(25, 25, 25));
+        scoreLabel.setForeground(new Color(25, 255, 0));
+        scoreLabel.setFont(new Font("Ink Free", Font.BOLD, 30));
+        scoreLabel.setBorder(BorderFactory.createBevelBorder(1));
+        scoreLabel.setHorizontalAlignment(JTextField.CENTER);
+        scoreLabel.setEditable(false);
 
         textarea.setBounds(0, 50, 650, 50);
         textarea.setLineWrap(true);
@@ -139,13 +137,6 @@ public class Quiz extends Thread implements ActionListener {
         seconds_left.setHorizontalAlignment(JTextField.CENTER);
         seconds_left.setText(String.valueOf(seconds));
 
-        time_label.setBounds(535, 475, 100, 25);
-        time_label.setBackground(new Color(50, 50, 50));
-        time_label.setForeground(new Color(255, 0, 0));
-        time_label.setFont(new Font("MV Boli", Font.PLAIN, 16));
-        time_label.setHorizontalAlignment(JTextField.CENTER);
-        time_label.setText("timer >:D");
-
         number_right.setBounds(225, 225, 200, 100);
         number_right.setBackground(new Color(25, 25, 25));
         number_right.setForeground(new Color(25, 255, 0));
@@ -154,15 +145,6 @@ public class Quiz extends Thread implements ActionListener {
         number_right.setHorizontalAlignment(JTextField.CENTER);
         number_right.setEditable(false);
 
-        percentage.setBounds(225, 325, 200, 100);
-        percentage.setBackground(new Color(25, 25, 25));
-        percentage.setForeground(new Color(25, 255, 0));
-        percentage.setFont(new Font("Ink Free", Font.BOLD, 50));
-        percentage.setBorder(BorderFactory.createBevelBorder(1));
-        percentage.setHorizontalAlignment(JTextField.CENTER);
-        percentage.setEditable(false);
-
-        frame.add(time_label);
         frame.add(seconds_left);
         frame.add(answer_labelA);
         frame.add(answer_labelB);
@@ -173,18 +155,18 @@ public class Quiz extends Thread implements ActionListener {
         frame.add(buttonC);
         frame.add(buttonD);
         frame.add(textarea);
-        frame.add(textfield);
+        frame.add(scoreLabel);
         frame.setVisible(true);
-
         nextQuestion();
     }
 
+
     public void nextQuestion() {
-        total_questions = slangs.size();
-        if (index >= total_questions) {
+        total_questions--;
+        if (total_questions <= 0) {
             frame.dispose();
         } else {
-            textfield.setText("Question " + (questionIndex + 1));
+            scoreLabel.setText("Score: " + Integer.toString(correct_guesses));
             Random r = new Random();
             index = r.nextInt((slangs.size()-1 - 0) + 1 ) + 0;
             textarea.setText("What is the meaning of " + slangs.get(index));

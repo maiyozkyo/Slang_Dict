@@ -11,7 +11,7 @@ import java.util.Random;
  * vn.edu.hcmus._19127343.Dict
  * Created by Bleu
  * Date 1/3/2022 - 1:05 PM
- * Description: 85% of Quiz code belong to (Youtuber) Bro Code
+ * Description: 75% of Quiz code belong to (Youtuber) Bro Code
  */
 
 public class Quiz extends Thread implements ActionListener {
@@ -26,7 +26,7 @@ public class Quiz extends Thread implements ActionListener {
     char trueAns;
     JDialog frame;
     JTextField scoreLabel = new JTextField();
-    JTextArea textarea = new JTextArea();
+    JTextArea questionLabel = new JTextArea();
     JButton buttonA = new JButton();
     JButton buttonB = new JButton();
     JButton buttonC = new JButton();
@@ -75,14 +75,14 @@ public class Quiz extends Thread implements ActionListener {
         scoreLabel.setHorizontalAlignment(JTextField.CENTER);
         scoreLabel.setEditable(false);
 
-        textarea.setBounds(0, 50, 650, 50);
-        textarea.setLineWrap(true);
-        textarea.setWrapStyleWord(true);
-        textarea.setBackground(new Color(25, 25, 25));
-        textarea.setForeground(new Color(25, 255, 0));
-        textarea.setFont(new Font("MV Boli", Font.BOLD, 25));
-        textarea.setBorder(BorderFactory.createBevelBorder(1));
-        textarea.setEditable(false);
+        questionLabel.setBounds(0, 50, 650, 50);
+        questionLabel.setLineWrap(true);
+        questionLabel.setWrapStyleWord(true);
+        questionLabel.setBackground(new Color(25, 25, 25));
+        questionLabel.setForeground(new Color(25, 255, 0));
+        questionLabel.setFont(new Font("MV Boli", Font.BOLD, 25));
+        questionLabel.setBorder(BorderFactory.createBevelBorder(1));
+        questionLabel.setEditable(false);
 
         buttonA.setBounds(0, 100, 100, 100);
         buttonA.setFont(new Font("MV Boli", Font.BOLD, 35));
@@ -154,7 +154,7 @@ public class Quiz extends Thread implements ActionListener {
         frame.add(buttonB);
         frame.add(buttonC);
         frame.add(buttonD);
-        frame.add(textarea);
+        frame.add(questionLabel);
         frame.add(scoreLabel);
         frame.setVisible(true);
         nextQuestion();
@@ -169,7 +169,7 @@ public class Quiz extends Thread implements ActionListener {
             scoreLabel.setText("Score: " + Integer.toString(correct_guesses));
             Random r = new Random();
             index = r.nextInt((slangs.size()-1 - 0) + 1 ) + 0;
-            textarea.setText("What is the meaning of " + slangs.get(index));
+            questionLabel.setText("What is the meaning of " + slangs.get(index));
             int randomAns = r.nextInt((means.size()-1 - 0) + 1 ) + 0;
             answer_labelA.setText(means.get(randomAns));
             randomAns = r.nextInt((means.size()-1 - 0) + 1 ) + 0;

@@ -36,7 +36,7 @@ public class Main {
      * @throws FileNotFoundException
      */
     private static void start() throws FileNotFoundException {
-        File currentSlang = new File("current_slang.txt");
+        File currentSlang = new File("src\\vn\\edu\\hcmus\\_19127343\\Dict_19127343\\current_slang.txt");
         Scanner sc = new Scanner(currentSlang);
         sc.nextLine();
         while (sc.hasNextLine()){
@@ -53,8 +53,8 @@ public class Main {
         exLen = slangs.size();
         
         //Open file to load data
-        File slangHis = new File("hslangs.txt");
-        File defHis = new File("hdefs.txt");
+        File slangHis = new File("src\\vn\\edu\\hcmus\\_19127343\\Dict_19127343\\hslangs.txt");
+        File defHis = new File("src\\vn\\edu\\hcmus\\_19127343\\Dict_19127343\\hdefs.txt");
         Scanner scan_Slang = new Scanner(slangHis);
         Scanner scan_Def = new Scanner(defHis);
         while (scan_Slang.hasNextLine()){
@@ -462,7 +462,7 @@ public class Main {
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File originSlang = new File("slang.txt");
+                File originSlang = new File("src\\vn\\edu\\hcmus\\_19127343\\Dict_19127343\\slang.txt");
                 Scanner sc = null;
                 try {
                     sc = new Scanner(originSlang);
@@ -508,8 +508,8 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
                 try {
-                    FileWriter hDef = new FileWriter("hdefs.txt");
-                    FileWriter hSlang = new FileWriter("hslangs.txt");
+                    FileWriter hDef = new FileWriter("src\\vn\\edu\\hcmus\\_19127343\\Dict_19127343\\hdefs.txt");
+                    FileWriter hSlang = new FileWriter("src\\vn\\edu\\hcmus\\_19127343\\Dict_19127343\\hslangs.txt");
                     for (int i = 0; i < defsHis.size(); i++){
                         hDef.write(defsHis.get(i) + "\n");
                     }

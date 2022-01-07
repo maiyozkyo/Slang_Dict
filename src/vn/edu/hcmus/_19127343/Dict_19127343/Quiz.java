@@ -11,7 +11,7 @@ import java.util.Random;
  * vn.edu.hcmus._19127343.Dict
  * Created by Bleu
  * Date 1/3/2022 - 1:05 PM
- * Description: 75% of Quiz code belong to (Youtuber) Bro Code
+ * Description: ~65% of Quiz code belong to (Youtuber) Bro Code
  */
 
 public class Quiz extends Thread implements ActionListener {
